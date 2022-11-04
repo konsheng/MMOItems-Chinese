@@ -32,19 +32,19 @@ public class Amphibian extends ChooseStat implements ItemRestriction, GemStoneSt
             SUBMERGED = "SUBMERGED";
 
     public Amphibian() {
-        super("AMPHIBIAN", Material.WATER_BUCKET, "Amphibian", new String[]{"May this item only be used in specific", "environments regarding liquids?"}, new String[]{"!block", "all"});
+        super("AMPHIBIAN", Material.WATER_BUCKET, "Amphibian", new String[]{"该物品是否只能在某些流体", "环境中使用?"}, new String[]{"!block", "all"});
 
         addChoices(NORMAL, DRY, WET, DAMP, LAVA, MOLTEN, LIQUID, SUBMERGED);
 
         // Put definitions
-        setHint(NORMAL, "No liquids dependency");
-        setHint(DRY, "The item does not work if the player is touching a liquid block.");
-        setHint(WET, "The only works if the player is touching water (rain does not count).");
-        setHint(DAMP, "The only works if the player is completely submerged in water.");
-        setHint(LAVA, "The only works if the player is touching lava.");
-        setHint(MOLTEN, "The only works if the player is completely submerged in lava.");
-        setHint(LIQUID, "The only works if the player is touching any liquid.");
-        setHint(SUBMERGED, "The only works if the player is completely submerged in any liquid.");
+        setHint(NORMAL, "不需要任何流体");
+        setHint(DRY, "该物品在玩家触碰任何流体都不会生效.");
+        setHint(WET, "该物品在玩家完全呆在水中才会生效(雨不算).");
+        setHint(DAMP, "该物品在玩家触碰水都才会生效.");
+        setHint(LAVA, "该物品在玩家触碰岩浆才会生效.");
+        setHint(MOLTEN, "该物品在玩家完全呆在岩浆中才会生效.");
+        setHint(LIQUID, "该物品在玩家触碰任意流体才会生效.");
+        setHint(SUBMERGED, "该物品在玩家完全呆在任意流体中才会生效.");
     }
 
     @NotNull

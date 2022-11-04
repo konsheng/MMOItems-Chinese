@@ -32,8 +32,8 @@ import java.lang.reflect.Field;
 
 public class CanDeskin extends BooleanStat implements ConsumableItemInteraction {
 	public CanDeskin() {
-		super("CAN_DESKIN", Material.LEATHER, "Can Deskin?",
-				new String[] { "Players can deskin their item", "and get their skin back", "from the item." }, new String[] { "consumable" });
+		super("CAN_DESKIN", Material.LEATHER, "可以还原本样?",
+				new String[] { "玩家是否用该消耗品还原物品本样", "并从该物品获得原来的皮肤物品." }, new String[] { "consumable" });
 	}
 
 	@Override
@@ -80,11 +80,11 @@ public class CanDeskin extends BooleanStat implements ConsumableItemInteraction 
 			if (target.hasTag("SkullOwner") && (targetItem.getType() == VersionMaterial.PLAYER_HEAD.toMaterial())
 					&& (originalItem.getType() == VersionMaterial.PLAYER_HEAD.toMaterial())) {
 				try {
-					Field profileField = targetItemMeta.getClass().getDeclaredField("profile");
+					Field profileField = targetItemMeta.getClass().getDeclaredField("轮廓");
 					profileField.setAccessible(true);
 					profileField.set(targetItemMeta, ((SkullTextureData) originalMmoitem.getData(ItemStats.SKULL_TEXTURE)).getGameProfile());
 				} catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException e) {
-					MMOItems.plugin.getLogger().warning("Could not read skull texture");
+					MMOItems.plugin.getLogger().warning("无法读取头骨纹理");
 				}
 			}
 
