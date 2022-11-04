@@ -115,9 +115,9 @@ public class MMOItems extends JavaPlugin {
         PluginUtils.isDependencyPresent("WorldEdit", u -> {
             try {
                 new WorldEditSupport();
-                getLogger().log(Level.INFO, "Hooked onto WorldEdit");
+                getLogger().log(Level.INFO, "已挂钩 WorldEdit");
             } catch (Exception exception) {
-                getLogger().log(Level.WARNING, "Could not initialize support with WorldEdit 7: ", exception);
+                getLogger().log(Level.WARNING, "无法初始化对 WorldEdit 7 的支持: ", exception);
             }
         });
 
@@ -151,8 +151,8 @@ public class MMOItems extends JavaPlugin {
         final int configVersion = getConfig().contains("config-version", true) ? getConfig().getInt("config-version") : -1;
         final int defConfigVersion = getConfig().getDefaults().getInt("config-version");
         if (configVersion != defConfigVersion) {
-            getLogger().warning("You may be using an outdated config.yml!");
-            getLogger().warning("(Your config version: '" + configVersion + "' | Expected config version: '" + defConfigVersion + "')");
+            getLogger().warning("您可能正在使用过时的 config.yml!");
+            getLogger().warning("(你的 config 版本: '" + configVersion + "' | 预期 config 版本: '" + defConfigVersion + "')");
         }
 
         // registering here so the stats will load with the templates
@@ -255,8 +255,8 @@ public class MMOItems extends JavaPlugin {
 
         if (book && amounts) {
             getLogger().warning("Tried to enable recipe book while amounts are active!");
-            getLogger().warning("Please use only ONE of these options!");
-            getLogger().warning("Disabling both options for now...");
+            getLogger().warning("请您仅使用这些选项之一!");
+            getLogger().warning("暂时禁用这两个选项...");
             book = false;
             amounts = false;
         }
@@ -354,14 +354,14 @@ public class MMOItems extends JavaPlugin {
      * @param handler Your RPGHandler instance
      */
     public void setRPG(RPGHandler handler) {
-        Validate.notNull(handler, "RPGHandler cannot be null");
+        Validate.notNull(handler, "RPGHandler 不能为空");
 
         // Unregister events from current RPGPlugin instance
         if (rpgPlugin != null && rpgPlugin instanceof Listener && isEnabled())
             HandlerList.unregisterAll((Listener) rpgPlugin);
 
         rpgPlugin = handler;
-        getLogger().log(Level.INFO, "Now using " + handler.getClass().getSimpleName() + " as RPG provider");
+        getLogger().log(Level.INFO, "正在使用 " + handler.getClass().getSimpleName() + " 作为 RPG 提供者");
 
         // Register new events
         if (handler instanceof Listener && isEnabled())
@@ -375,13 +375,13 @@ public class MMOItems extends JavaPlugin {
     public boolean setRPG(RPGHandler.PluginEnum potentialPlugin) {
 
         try {
-            Validate.notNull(Bukkit.getPluginManager().getPlugin(potentialPlugin.getName()), "Plugin is not installed");
+            Validate.notNull(Bukkit.getPluginManager().getPlugin(potentialPlugin.getName()), "插件未安装");
             setRPG(potentialPlugin.load());
             return true;
 
             // Some loading issue
         } catch (Exception exception) {
-            MMOItems.plugin.getLogger().log(Level.WARNING, "Could not initialize RPG plugin compatibility with " + potentialPlugin.getName() + ":");
+            MMOItems.plugin.getLogger().log(Level.WARNING, "无法初始化 RPG 插件兼容性 " + potentialPlugin.getName() + ":");
             exception.printStackTrace();
             return false;
         }
@@ -443,7 +443,7 @@ public class MMOItems extends JavaPlugin {
      * @param enchantPlugin Enchantment plugin
      */
     public void registerEnchantPlugin(EnchantPlugin enchantPlugin) {
-        Validate.notNull(enchantPlugin, "Enchant plugin cannot be null");
+        Validate.notNull(enchantPlugin, "附魔插件不能为空");
         enchantPlugins.add(enchantPlugin);
     }
 
