@@ -146,7 +146,7 @@ public class Abilities extends ItemStat<RandomAbilityListData, AbilityListData> 
 		lore.add(ChatColor.GRAY + "当前技能: " + ChatColor.GOLD
 				+ (statData.isPresent() ? ((RandomAbilityListData) statData.get()).getAbilities().size() : 0));
 		lore.add("");
-		lore.add(ChatColor.YELLOW + AltChar.listDash + "► 点击以设置物品技能.");
+		lore.add(ChatColor.YELLOW + AltChar.listDash + "点击以设置物品技能.");
 	}
 
 	@NotNull
