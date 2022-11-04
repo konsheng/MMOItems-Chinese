@@ -132,7 +132,7 @@ public class UpgradingEdition extends EditionInventory {
 		double success = getEditedSection().getDouble("upgrade.success");
 		ItemStack successItem = new ItemStack(VersionMaterial.EXPERIENCE_BOTTLE.toMaterial());
 		ItemMeta successItemMeta = successItem.getItemMeta();
-		successItemMeta.setDisplayName(ChatColor.GREEN + "Success Chance");
+		successItemMeta.setDisplayName(ChatColor.GREEN + "成功概率");
 		List<String> successItemLore = new ArrayList<>();
 		successItemLore.add(ChatColor.GRAY + "The chance of successfully upgrading");
 		successItemLore.add(ChatColor.GRAY + "when using a consumable or when using");
