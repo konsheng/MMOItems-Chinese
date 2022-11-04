@@ -35,12 +35,12 @@ import java.util.Optional;
 public class Abilities extends ItemStat<RandomAbilityListData, AbilityListData> {
 	public Abilities() {
 		super("ABILITY", Material.BLAZE_POWDER, "物品技能",
-				new String[] { "Make your item cast amazing abilities", "to kill monsters or buff yourself." }, new String[] { "!block", "all" });
+				new String[] { "将你的物品绑定技能以让它更好", "击杀怪物或者增益自己." }, new String[] { "!block", "all" });
 	}
 
 	@Override
 	public RandomAbilityListData whenInitialized(Object object) {
-		Validate.isTrue(object instanceof ConfigurationSection, "Must specify a valid config section");
+		Validate.isTrue(object instanceof ConfigurationSection, "你必须指定有效的配置");
 		ConfigurationSection config = (ConfigurationSection) object;
 		RandomAbilityListData list = new RandomAbilityListData();
 
@@ -112,14 +112,14 @@ public class Abilities extends ItemStat<RandomAbilityListData, AbilityListData> 
 
 		if (edited.equals("ability")) {
 			Validate.isTrue(MMOItems.plugin.getSkills().hasSkill(format),
-					"format is not a valid ability! You may check the ability list using /mi list ability.");
+					"不是一个有效的技能格式! 你可以通过该指令查看完整的技能列表： /mi list ability.");
 			RegisteredSkill ability = MMOItems.plugin.getSkills().getSkill(format);
 
 			inv.getEditedSection().set("ability." + configKey, null);
 			inv.getEditedSection().set("ability." + configKey + ".type", format);
 			inv.registerTemplateEdition();
 			inv.getPlayer().sendMessage(
-					MMOItems.plugin.getPrefix() + "Successfully set the ability to " + ChatColor.GOLD + ability.getName() + ChatColor.GRAY + ".");
+					MMOItems.plugin.getPrefix() + "成功将技能设置为 " + ChatColor.GOLD + ability.getName() + ChatColor.GRAY + ".");
 			return;
 		}
 
@@ -129,7 +129,7 @@ public class Abilities extends ItemStat<RandomAbilityListData, AbilityListData> 
 
 			inv.getEditedSection().set("ability." + configKey + ".mode", castMode.name());
 			inv.registerTemplateEdition();
-			inv.getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "Successfully set the trigger to " + ChatColor.GOLD + castMode.getName()
+			inv.getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "成功设置触发器为 " + ChatColor.GOLD + castMode.getName()
 					+ ChatColor.GRAY + ".");
 			return;
 		}
@@ -138,15 +138,15 @@ public class Abilities extends ItemStat<RandomAbilityListData, AbilityListData> 
 				FormulaSaveOption.NONE);
 		inv.registerTemplateEdition();
 		inv.getPlayer().sendMessage(MMOItems.plugin.getPrefix() + ChatColor.GOLD + MMOUtils.caseOnWords(edited.replace("-", " ")) + ChatColor.GRAY
-				+ " successfully added.");
+				+ " 已成功添加.");
 	}
 
 	@Override
 	public void whenDisplayed(List<String> lore, Optional<RandomAbilityListData> statData) {
-		lore.add(ChatColor.GRAY + "Current Abilities: " + ChatColor.GOLD
+		lore.add(ChatColor.GRAY + "当前技能: " + ChatColor.GOLD
 				+ (statData.isPresent() ? ((RandomAbilityListData) statData.get()).getAbilities().size() : 0));
 		lore.add("");
-		lore.add(ChatColor.YELLOW + AltChar.listDash + " Click to edit the item abilities.");
+		lore.add(ChatColor.YELLOW + AltChar.listDash + "► 点击以设置物品技能.");
 	}
 
 	@NotNull

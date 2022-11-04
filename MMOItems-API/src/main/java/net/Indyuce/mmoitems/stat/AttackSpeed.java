@@ -6,7 +6,7 @@ import org.bukkit.attribute.Attribute;
 
 public class AttackSpeed extends AttackWeaponStat {
 	public AttackSpeed() {
-		super("ATTACK_SPEED", VersionMaterial.LIGHT_GRAY_DYE.toMaterial(), "Attack Speed",
-				new String[] { "The speed at which your weapon strikes.", "In attacks/sec." }, Attribute.GENERIC_ATTACK_SPEED);
+		super("ATTACK_SPEED", VersionMaterial.LIGHT_GRAY_DYE.toMaterial(), "攻击速度",
+				new String[] { "你的武器的攻击速度.", "也就是每秒可以攻击的次数." }, Attribute.GENERIC_ATTACK_SPEED);
 	}
 }
