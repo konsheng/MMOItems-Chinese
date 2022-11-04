@@ -66,7 +66,7 @@ public class ItemBrowser extends PluginInventory {
             int n = 0;
 
             // Create inventory
-            Inventory inv = Bukkit.createInventory(this, 54, "Item Explorer");
+            Inventory inv = Bukkit.createInventory(this, 54, "物品浏览器");
 
             // Fetch the list of types
             List<Type> types = new ArrayList<>(MMOItems.plugin.getTypes().getAll());
@@ -82,12 +82,12 @@ public class ItemBrowser extends PluginInventory {
                 ItemStack item = currentType.getItem();
                 item.setAmount(Math.max(1, Math.min(64, items)));
                 ItemMeta meta = item.getItemMeta();
-                meta.setDisplayName(ChatColor.GREEN + currentType.getName() + ChatColor.DARK_GRAY + " (Click to browse)");
+                meta.setDisplayName(ChatColor.GREEN + currentType.getName() + ChatColor.DARK_GRAY + " (点击以查看)");
                 meta.addItemFlags(ItemFlag.values());
                 List<String> lore = new ArrayList<>();
                 lore.add(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "There " + (items == 1 ? "is" : "are") + " "
                         + (items < 1 ? String.valueOf(ChatColor.RED) + ChatColor.ITALIC + "no" : String.valueOf(ChatColor.GOLD) + ChatColor.ITALIC + items) + ChatColor.GRAY
-                        + ChatColor.ITALIC + " item" + (items == 1 ? "" : "s") + " in that currentType.");
+                        + ChatColor.ITALIC + " 物品" + (items == 1 ? "" : "s") + " in that currentType.");
                 meta.setLore(lore);
                 item.setItemMeta(meta);
 
@@ -98,19 +98,19 @@ public class ItemBrowser extends PluginInventory {
             // Fill remainder slots with 'No Type' notice
             ItemStack glass = VersionMaterial.GRAY_STAINED_GLASS_PANE.toItem();
             ItemMeta glassMeta = glass.getItemMeta();
-            glassMeta.setDisplayName(ChatColor.RED + "- No type -");
+            glassMeta.setDisplayName(ChatColor.RED + "- 没有类型 -");
             glass.setItemMeta(glassMeta);
 
             // Next Page
             ItemStack next = new ItemStack(Material.ARROW);
             ItemMeta nextMeta = next.getItemMeta();
-            nextMeta.setDisplayName(ChatColor.GREEN + "Next Page");
+            nextMeta.setDisplayName(ChatColor.GREEN + "下一页");
             next.setItemMeta(nextMeta);
 
             // Previous Page
             ItemStack previous = new ItemStack(Material.ARROW);
             ItemMeta previousMeta = previous.getItemMeta();
-            previousMeta.setDisplayName(ChatColor.GREEN + "Previous Page");
+            previousMeta.setDisplayName(ChatColor.GREEN + "上一页");
             previous.setItemMeta(previousMeta);
 
             // Fill
@@ -129,14 +129,14 @@ public class ItemBrowser extends PluginInventory {
          *          Displays all the items of the chosen Type
          *  ------------------------------
          */
-        Inventory inv = Bukkit.createInventory(this, 54, (deleteMode ? ("Delete Mode: ") : ("Item Explorer: ")) + type.getName());
+        Inventory inv = Bukkit.createInventory(this, 54, (deleteMode ? ("删除模式: ") : ("物品浏览: ")) + type.getName());
 
         /*
          * Build cool Item Stacks for buttons and sh
          */
         ItemStack error = VersionMaterial.RED_STAINED_GLASS_PANE.toItem();
         ItemMeta errorMeta = error.getItemMeta();
-        errorMeta.setDisplayName(ChatColor.RED + "- Error -");
+        errorMeta.setDisplayName(ChatColor.RED + "- 错误 -");
         List<String> errorLore = new ArrayList<>();
         errorLore.add("\u00a7\u00a7oAn error occurred while");
         errorLore.add("\u00a7\u00a7otrying to generate that item.");
@@ -145,41 +145,41 @@ public class ItemBrowser extends PluginInventory {
 
         ItemStack noItem = VersionMaterial.GRAY_STAINED_GLASS_PANE.toItem();
         ItemMeta noItemMeta = noItem.getItemMeta();
-        noItemMeta.setDisplayName(ChatColor.RED + "- No Item -");
+        noItemMeta.setDisplayName(ChatColor.RED + "- 没有物品 -");
         noItem.setItemMeta(noItemMeta);
 
         ItemStack next = new ItemStack(Material.ARROW);
         ItemMeta nextMeta = next.getItemMeta();
-        nextMeta.setDisplayName(ChatColor.GREEN + "Next Page");
+        nextMeta.setDisplayName(ChatColor.GREEN + "下一页");
         next.setItemMeta(nextMeta);
 
         ItemStack back = new ItemStack(Material.ARROW);
         ItemMeta backMeta = back.getItemMeta();
-        backMeta.setDisplayName(ChatColor.GREEN + AltChar.rightArrow + " Back");
+        backMeta.setDisplayName(ChatColor.GREEN + AltChar.rightArrow + " 返回");
         back.setItemMeta(backMeta);
 
         ItemStack create = new ItemStack(VersionMaterial.WRITABLE_BOOK.toMaterial());
         ItemMeta createMeta = create.getItemMeta();
-        createMeta.setDisplayName(ChatColor.GREEN + "Create New");
+        createMeta.setDisplayName(ChatColor.GREEN + "创建新物品");
         create.setItemMeta(createMeta);
 
         ItemStack delete = new ItemStack(VersionMaterial.CAULDRON.toMaterial());
         ItemMeta deleteMeta = delete.getItemMeta();
-        deleteMeta.setDisplayName(ChatColor.RED + (deleteMode ? "Cancel Deletion" : "Delete Item"));
+        deleteMeta.setDisplayName(ChatColor.RED + (deleteMode ? "取消删除" : "删除物品"));
         delete.setItemMeta(deleteMeta);
 
         ItemStack previous = new ItemStack(Material.ARROW);
         ItemMeta previousMeta = previous.getItemMeta();
-        previousMeta.setDisplayName(ChatColor.GREEN + "Previous Page");
+        previousMeta.setDisplayName(ChatColor.GREEN + "上一页");
         previous.setItemMeta(previousMeta);
 
         if (type == Type.BLOCK) {
             ItemStack downloadPack = new ItemStack(Material.HOPPER);
             ItemMeta downloadMeta = downloadPack.getItemMeta();
-            downloadMeta.setDisplayName(ChatColor.GREEN + "Download Default Resourcepack");
-            downloadMeta.setLore(Arrays.asList(ChatColor.LIGHT_PURPLE + "Only seeing stone blocks?", "",
-                    ChatColor.RED + "By downloading the default resourcepack you can", ChatColor.RED + "edit the blocks however you want.",
-                    ChatColor.RED + "You will still have to add it to your server!"));
+            downloadMeta.setDisplayName(ChatColor.GREEN + "下载默认资源包");
+            downloadMeta.setLore(Arrays.asList(ChatColor.LIGHT_PURPLE + "您只看到了石头?", "",
+                    ChatColor.RED + "通过下载默认资源包你可以", ChatColor.RED + "根据需要编辑方块.",
+                    ChatColor.RED + "您仍然必须将其添加到您的服务器!"));
             downloadPack.setItemMeta(downloadMeta);
             inv.setItem(45, downloadPack); }
 
@@ -262,13 +262,13 @@ public class ItemBrowser extends PluginInventory {
 
             // Deleting lore?
             if (deleteMode) {
-                lore.add(ChatColor.RED + AltChar.cross + " CLICK TO DELETE " + AltChar.cross);
-                meta.setDisplayName(ChatColor.RED + "DELETE: " + (meta.hasDisplayName() ? meta.getDisplayName() : MMOUtils.getDisplayName(item)));
+                lore.add(ChatColor.RED + AltChar.cross + " 点击以删除 " + AltChar.cross);
+                meta.setDisplayName(ChatColor.RED + "删除: " + (meta.hasDisplayName() ? meta.getDisplayName() : MMOUtils.getDisplayName(item)));
 
             // Editing lore?
             } else {
-                lore.add(ChatColor.YELLOW + AltChar.smallListDash + " Left click to obtain this item.");
-                lore.add(ChatColor.YELLOW + AltChar.smallListDash + " Right click to edit this item."); }
+                lore.add(ChatColor.YELLOW + AltChar.smallListDash + " 左键点击以获取此物品.");
+                lore.add(ChatColor.YELLOW + AltChar.smallListDash + " 右键点击以编辑此物品."); }
 
             meta.setLore(lore);
             item.setItemMeta(meta);
@@ -311,29 +311,29 @@ public class ItemBrowser extends PluginInventory {
 
         ItemStack item = event.getCurrentItem();
         if (MMOUtils.isMetaItem(item, false)) {
-            if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Next Page")) {
+            if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "下一页")) {
                 page++;
                 open();
-            } else if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Previous Page")) {
+            } else if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "上一页")) {
                 page--;
                 open();
-            } else if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + AltChar.rightArrow + " Back"))
+            } else if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + AltChar.rightArrow + " 返回"))
                 new ItemBrowser(getPlayer()).open();
 
-            else if (item.getItemMeta().getDisplayName().equals(ChatColor.RED + "Cancel Deletion")) {
+            else if (item.getItemMeta().getDisplayName().equals(ChatColor.RED + "取消删除")) {
                 deleteMode = false;
                 open();
-            } else if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Create New"))
-                new NewItemEdition(this).enable("Write in the chat the text you want.");
+            } else if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "创建新物品"))
+                new NewItemEdition(this).enable("请在聊天框内输入您想创建物品的名称.");
 
-            else if (type != null && item.getItemMeta().getDisplayName().equals(ChatColor.RED + "Delete Item")) {
+            else if (type != null && item.getItemMeta().getDisplayName().equals(ChatColor.RED + "删除物品")) {
                 deleteMode = true;
                 open();
-            } else if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Download Default Resourcepack")) {
+            } else if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "下载默认资源包")) {
                 MythicLib.plugin.getVersion().getWrapper().sendJson(getPlayer(),
-                        "[{\"text\":\"Click to download!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://drive.google.com/uc?id=1FjV7y-2cn8qzSiktZ2CUXmkdjepXdj5N\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":[\"\",{\"text\":\"https://drive.google.com/uc?id=1FjV7y-2cn8qzSiktZ2CUXmkdjepXdj5N\",\"italic\":true,\"color\":\"white\"}]}}]");
+                        "[{\"text\":\"点击以下载!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://drive.google.com/uc?id=1FjV7y-2cn8qzSiktZ2CUXmkdjepXdj5N\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":[\"\",{\"text\":\"https://drive.google.com/uc?id=1FjV7y-2cn8qzSiktZ2CUXmkdjepXdj5N\",\"italic\":true,\"color\":\"white\"}]}}]");
                 getPlayer().closeInventory();
-            } else if (type == null && !item.getItemMeta().getDisplayName().equals(ChatColor.RED + "- No type -"))
+            } else if (type == null && !item.getItemMeta().getDisplayName().equals(ChatColor.RED + "- 没有类型 -"))
                 new ItemBrowser(getPlayer(), MMOItems.plugin.getTypes().get(NBTItem.get(item).getString("typeId"))).open();
         }
 
