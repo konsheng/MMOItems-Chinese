@@ -32,22 +32,22 @@ public class UpgradingEdition extends EditionInventory {
 
 	@Override
 	public Inventory getInventory() {
-		Inventory inv = Bukkit.createInventory(this, 54, "Upgrade Setup: " + template.getId());
+		Inventory inv = Bukkit.createInventory(this, 54, "升级设置: " + template.getId());
 
 		boolean workbench = getEditedSection().getBoolean("upgrade.workbench");
 		if (!template.getType().corresponds(Type.CONSUMABLE)) {
 
 			ItemStack workbenchItem = new ItemStack(VersionMaterial.CRAFTING_TABLE.toMaterial());
 			ItemMeta workbenchItemMeta = workbenchItem.getItemMeta();
-			workbenchItemMeta.setDisplayName(ChatColor.GREEN + "Workbench Upgrade Only?");
+			workbenchItemMeta.setDisplayName(ChatColor.GREEN + "仅工作台升级?");
 			List<String> workbenchItemLore = new ArrayList<>();
-			workbenchItemLore.add(ChatColor.GRAY + "When toggled on, players must");
-			workbenchItemLore.add(ChatColor.GRAY + "use a crafting station recipe in");
-			workbenchItemLore.add(ChatColor.GRAY + "order to upgrade their weapon.");
+			workbenchItemLore.add(ChatColor.GRAY + "开启后, 玩家必须");
+			workbenchItemLore.add(ChatColor.GRAY + "使用工作台配方来");
+			workbenchItemLore.add(ChatColor.GRAY + "升级他们的武器.");
 			workbenchItemLore.add("");
-			workbenchItemLore.add(ChatColor.GRAY + "Current Value: " + ChatColor.GOLD + workbench);
+			workbenchItemLore.add(ChatColor.GRAY + "当前值: " + ChatColor.GOLD + workbench);
 			workbenchItemLore.add("");
-			workbenchItemLore.add(ChatColor.YELLOW + AltChar.listDash + " Click to change this value.");
+			workbenchItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键点击以更改.");
 			workbenchItemMeta.setLore(workbenchItemLore);
 			workbenchItem.setItemMeta(workbenchItemMeta);
 			inv.setItem(20, workbenchItem);
@@ -55,12 +55,12 @@ public class UpgradingEdition extends EditionInventory {
 			String upgradeTemplate = getEditedSection().getString("upgrade.template");
 			ItemStack templateItem = new ItemStack(VersionMaterial.OAK_SIGN.toMaterial());
 			ItemMeta templateItemMeta = templateItem.getItemMeta();
-			templateItemMeta.setDisplayName(ChatColor.GREEN + "Upgrade Template");
+			templateItemMeta.setDisplayName(ChatColor.GREEN + "升级模板");
 			List<String> templateItemLore = new ArrayList<>();
 			templateItemLore.add(ChatColor.GRAY + "This option dictates what stats are improved");
 			templateItemLore.add(ChatColor.GRAY + "when your item is upgraded. More info on the wiki.");
 			templateItemLore.add("");
-			templateItemLore.add(ChatColor.GRAY + "Current Value: "
+			templateItemLore.add(ChatColor.GRAY + "当前值: "
 					+ (upgradeTemplate == null ? ChatColor.RED + "No template" : ChatColor.GOLD + upgradeTemplate));
 			templateItemLore.add("");
 			templateItemLore.add(ChatColor.YELLOW + AltChar.listDash + " Click to input the template.");
