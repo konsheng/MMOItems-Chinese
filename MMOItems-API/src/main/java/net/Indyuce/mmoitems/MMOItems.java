@@ -184,7 +184,7 @@ public class MMOItems extends JavaPlugin {
 
         PluginUtils.hookDependencyIfPresent("Vault", u -> vaultSupport = new VaultSupport());
 
-        getLogger().log(Level.INFO, "Loading crafting stations, please wait..");
+        getLogger().log(Level.INFO, "正在加载制作站, 请稍后...");
         layoutManager.reload();
         stationRecipeManager.reload();
 
@@ -200,7 +200,7 @@ public class MMOItems extends JavaPlugin {
         try {
             Class.forName("net.Indyuce.mmoitems.MMOItemsBukkit").getConstructor(MMOItems.class).newInstance(this);
         } catch (Throwable exception) {
-            throw new RuntimeException("Cannot run an API build on Spigot!");
+            throw new RuntimeException("无法在 Spigot 上运行 API 构建!");
         }
 
         /*
@@ -229,14 +229,14 @@ public class MMOItems extends JavaPlugin {
 
 
         if (Bukkit.getPluginManager().getPlugin("BossShopPro") != null) {
-            getLogger().log(Level.INFO, "Hooked onto BossShopPro");
+            getLogger().log(Level.INFO, "已挂钩 BossShopPro");
             (new BukkitRunnable() {
                 public void run() {
                     //noinspection ProhibitedExceptionCaught
                     try {
                         new MMOItemsRewardTypes().register();
                     } catch (NullPointerException ignored) {
-                        getLogger().log(Level.INFO, "Could not Hook onto BossShopPro");
+                        getLogger().log(Level.INFO, "无法挂钩到 BossShopPro");
                     }
                 }
             }).runTaskLater(this, 1L);
@@ -265,7 +265,7 @@ public class MMOItems extends JavaPlugin {
         if (amounts) Bukkit.getPluginManager().registerEvents(new CraftingListener(), this);
 
         // Amount and bukkit recipes
-        getLogger().log(Level.INFO, "Loading recipes, please wait...");
+        getLogger().log(Level.INFO, "正在加载配方中, 请稍后...");
         recipeManager.loadRecipes();
 
         // Main command
