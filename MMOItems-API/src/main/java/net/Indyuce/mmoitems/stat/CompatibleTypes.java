@@ -32,21 +32,21 @@ import org.jetbrains.annotations.Nullable;
 
 public class CompatibleTypes extends ItemStat<StringListData, StringListData> {
 	public CompatibleTypes() {
-		super("COMPATIBLE_TYPES", VersionMaterial.COMMAND_BLOCK.toMaterial(), "Compatible Types",
-				new String[] { "The item types this skin is", "compatible with." }, new String[] { "skin" });
+		super("COMPATIBLE_TYPES", VersionMaterial.COMMAND_BLOCK.toMaterial(), "兼容类型",
+				new String[] { "该物品皮肤可以兼容的类型." }, new String[] { "skin" });
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public StringListData whenInitialized(Object object) {
-		Validate.isTrue(object instanceof List<?>, "Must specify a string list");
+		Validate.isTrue(object instanceof List<?>, "必须指定一个配置列表");
 		return new StringListData((List<String>) object);
 	}
 
 	@Override
 	public void whenClicked(@NotNull EditionInventory inv, @NotNull InventoryClickEvent event) {
 		if (event.getAction() == InventoryAction.PICKUP_ALL)
-			new StatEdition(inv, ItemStats.COMPATIBLE_TYPES).enable("Write in the chat the name of the type you want to add.");
+			new StatEdition(inv, ItemStats.COMPATIBLE_TYPES).enable("请在聊天框输入你需要添加的物品类型.");
 
 		if (event.getAction() == InventoryAction.PICKUP_HALF) {
 			if (inv.getEditedSection().contains("compatible-types")) {
@@ -58,7 +58,7 @@ public class CompatibleTypes extends ItemStat<StringListData, StringListData> {
 				lore.remove(last);
 				inv.getEditedSection().set("compatible-types", lore);
 				inv.registerTemplateEdition();
-				inv.getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "Successfully removed '" + last + "'.");
+				inv.getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "成功移除 '" + last + "'.");
 			}
 		}
 	}
@@ -70,22 +70,22 @@ public class CompatibleTypes extends ItemStat<StringListData, StringListData> {
 		lore.add(message.toUpperCase());
 		inv.getEditedSection().set("compatible-types", lore);
 		inv.registerTemplateEdition();
-		inv.getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "Compatible Types successfully added.");
+		inv.getPlayer().sendMessage(MMOItems.plugin.getPrefix() + "兼容物品类型已成功添加.");
 	}
 
 	@Override
 	public void whenDisplayed(List<String> lore, Optional<StringListData> statData) {
 
 		if (statData.isPresent()) {
-			lore.add(ChatColor.GRAY + "Current Value:");
+			lore.add(ChatColor.GRAY + "当前值:");
 			((StringListData) statData.get()).getList().forEach(str -> lore.add(ChatColor.GRAY + str));
 
 		} else
-			lore.add(ChatColor.GRAY + "Current Value: " + ChatColor.RED + "Compatible with any item.");
+			lore.add(ChatColor.GRAY + "当前值: " + ChatColor.RED + "兼容任意物品.");
 
 		lore.add("");
-		lore.add(ChatColor.YELLOW + AltChar.listDash + " Click to add a new type.");
-		lore.add(ChatColor.YELLOW + AltChar.listDash + " Right click to remove the last type.");
+		lore.add(ChatColor.YELLOW + AltChar.listDash + "► 左键以添加物品类型.");
+		lore.add(ChatColor.YELLOW + AltChar.listDash + "► 右键以移除最后一个物品类型.");
 	}
 
 	@NotNull

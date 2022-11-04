@@ -7,8 +7,8 @@ import net.Indyuce.mmoitems.stat.type.TemplateOption;
 
 public class CraftingPermission extends StringStat implements TemplateOption, GemStoneStat {
     public CraftingPermission() {
-        super("CRAFT_PERMISSION", VersionMaterial.OAK_SIGN.toMaterial(), "Crafting Recipe Permission",
-                new String[]{"The permission needed to craft this item.", "Changing this value requires &o/mi reload recipes&7."},
+        super("CRAFT_PERMISSION", VersionMaterial.OAK_SIGN.toMaterial(), "合成配方权限",
+                new String[]{"合成该物品所需要的权限.", "更改后需要该指令才能生效: &o/mi reload recipes&7."},
                 new String[]{"all"});
     }
 }

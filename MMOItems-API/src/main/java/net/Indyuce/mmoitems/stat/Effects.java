@@ -38,21 +38,21 @@ import java.util.*;
 
 public class Effects extends ItemStat<RandomPotionEffectListData, PotionEffectListData> implements PlayerConsumable {
     public Effects() {
-        super("EFFECTS", Material.POTION, "Effects", new String[]{"The potion effects your", "consumable item grants."},
+        super("EFFECTS", Material.POTION, "药水效果", new String[]{"你的消耗品获得的药水效果."},
                 new String[]{"consumable"});
     }
 
     @Override
     public RandomPotionEffectListData whenInitialized(Object object) {
-        Validate.isTrue(object instanceof ConfigurationSection, "Must specify a config section");
+        Validate.isTrue(object instanceof ConfigurationSection, "必须指定一个配置部分");
         return new RandomPotionEffectListData((ConfigurationSection) object);
     }
 
     @Override
     public void whenClicked(@NotNull EditionInventory inv, @NotNull InventoryClickEvent event) {
         if (event.getAction() == InventoryAction.PICKUP_ALL)
-            new StatEdition(inv, ItemStats.EFFECTS).enable("Write in the chat the permanent potion effect you want to add.",
-                    ChatColor.AQUA + "Format: {Potion Effect Name}|{Duration Numeric Formula}|{Amplifier Numeric Formula}", ChatColor.DARK_RED + "Note: " + ChatColor.RED + "The '|' lines are literal.");
+            new StatEdition(inv, ItemStats.EFFECTS).enable("请在聊天框输入你需要添加的药水效果.",
+                    ChatColor.AQUA + "格式: {药水名称}|{药水时长的公式}|{药水等级的公式}", ChatColor.DARK_RED + "Note: " + ChatColor.RED + "The '|' lines are literal.");
 
         if (event.getAction() == InventoryAction.PICKUP_HALF) {
             if (inv.getEditedSection().contains("effects")) {

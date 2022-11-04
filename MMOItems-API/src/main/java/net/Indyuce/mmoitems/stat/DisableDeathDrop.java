@@ -5,7 +5,7 @@ import org.bukkit.Material;
 
 public class DisableDeathDrop extends BooleanStat {
     public DisableDeathDrop() {
-        super("DISABLE_DEATH_DROP", Material.BONE, "Disable Drop On Death",
-                new String[] { "Enable this to prevent this item", "from dropping on the wielder's death." }, new String[] { "all" });
+        super("DISABLE_DEATH_DROP", Material.BONE, "关闭死亡掉落",
+                new String[] { "启用后物品持有者死亡后该物品将不会", "掉落." }, new String[] { "all" });
     }
 }
