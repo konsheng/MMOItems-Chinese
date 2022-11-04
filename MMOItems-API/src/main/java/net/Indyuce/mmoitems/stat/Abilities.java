@@ -34,7 +34,7 @@ import java.util.Optional;
 
 public class Abilities extends ItemStat<RandomAbilityListData, AbilityListData> {
 	public Abilities() {
-		super("ABILITY", Material.BLAZE_POWDER, "Item Abilities",
+		super("ABILITY", Material.BLAZE_POWDER, "物品技能",
 				new String[] { "Make your item cast amazing abilities", "to kill monsters or buff yourself." }, new String[] { "!block", "all" });
 	}
 
