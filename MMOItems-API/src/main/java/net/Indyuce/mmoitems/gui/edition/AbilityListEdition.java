@@ -34,7 +34,7 @@ public class AbilityListEdition extends EditionInventory {
 
 	@Override
 	public Inventory getInventory() {
-		Inventory inv = Bukkit.createInventory(this, 54, "Ability List");
+		Inventory inv = Bukkit.createInventory(this, 54, "技能列表");
 		int n = 0;
 
 		if (getEditedSection().contains("ability"))
@@ -54,11 +54,11 @@ public class AbilityListEdition extends EditionInventory {
 
 				ItemStack abilityItem = new ItemStack(Material.BLAZE_POWDER);
 				ItemMeta abilityItemMeta = abilityItem.getItemMeta();
-				abilityItemMeta.setDisplayName(ability != null ? ChatColor.GREEN + ability.getName() : ChatColor.RED + "! No Ability Selected !");
+				abilityItemMeta.setDisplayName(ability != null ? ChatColor.GREEN + ability.getName() : ChatColor.RED + "! 未选择技能 !");
 				List<String> abilityItemLore = new ArrayList<>();
 				abilityItemLore.add("");
 				abilityItemLore.add(
-						ChatColor.GRAY + "Cast Mode: " + (castMode != null ? ChatColor.GOLD + castMode.getName() : ChatColor.RED + "Not Selected"));
+						ChatColor.GRAY + "施展模式: " + (castMode != null ? ChatColor.GOLD + castMode.getName() : ChatColor.RED + "未选择"));
 				abilityItemLore.add("");
 
 				boolean check = false;
@@ -72,13 +72,13 @@ public class AbilityListEdition extends EditionInventory {
 								check = true;
 							} catch (IllegalArgumentException exception) {
 								abilityItemLore.add(ChatColor.GRAY + "* " + MMOUtils.caseOnWords(modifier.toLowerCase().replace("-", " ")) + ": "
-										+ ChatColor.GOLD + "Unreadable");
+										+ ChatColor.GOLD + "不可读");
 							}
 				if (check)
 					abilityItemLore.add("");
 
-				abilityItemLore.add(ChatColor.YELLOW + AltChar.listDash + " Left click to edit.");
-				abilityItemLore.add(ChatColor.YELLOW + AltChar.listDash + " Right click to remove.");
+				abilityItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 左键点击以编辑.");
+				abilityItemLore.add(ChatColor.YELLOW + AltChar.listDash + " 右键点击以删除.");
 				abilityItemMeta.setLore(abilityItemLore);
 				abilityItem.setItemMeta(abilityItemMeta);
 
@@ -89,12 +89,12 @@ public class AbilityListEdition extends EditionInventory {
 
 		ItemStack glass = VersionMaterial.GRAY_STAINED_GLASS_PANE.toItem();
 		ItemMeta glassMeta = glass.getItemMeta();
-		glassMeta.setDisplayName(ChatColor.RED + "- No Ability -");
+		glassMeta.setDisplayName(ChatColor.RED + "- 没有技能 -");
 		glass.setItemMeta(glassMeta);
 
 		ItemStack add = new ItemStack(VersionMaterial.WRITABLE_BOOK.toMaterial());
 		ItemMeta addMeta = add.getItemMeta();
-		addMeta.setDisplayName(ChatColor.GREEN + "Add an ability...");
+		addMeta.setDisplayName(ChatColor.GREEN + "添加技能...");
 		add.setItemMeta(addMeta);
 
 		inv.setItem(40, add);
@@ -113,7 +113,7 @@ public class AbilityListEdition extends EditionInventory {
 		if (event.getInventory() != event.getClickedInventory() || !MMOUtils.isMetaItem(item, false))
 			return;
 
-		if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Add an ability...")) {
+		if (item.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "添加技能...")) {
 			if (!getEditedSection().contains("ability")) {
 				getEditedSection().createSection("ability.ability1");
 				registerTemplateEdition();
@@ -121,7 +121,7 @@ public class AbilityListEdition extends EditionInventory {
 			}
 
 			if (getEditedSection().getConfigurationSection("ability").getKeys(false).size() > 6) {
-				player.sendMessage(MMOItems.plugin.getPrefix() + ChatColor.RED + "You've hit the 7 abilities per item limit.");
+				player.sendMessage(MMOItems.plugin.getPrefix() + ChatColor.RED + "您已达到每件物品 7 种技能的限制.");
 				return;
 			}
 
@@ -144,8 +144,8 @@ public class AbilityListEdition extends EditionInventory {
 			if (getEditedSection().contains("ability") && getEditedSection().getConfigurationSection("ability").contains(tag)) {
 				getEditedSection().set("ability." + tag, null);
 				registerTemplateEdition();
-				player.sendMessage(MMOItems.plugin.getPrefix() + "Successfully removed " + ChatColor.GOLD + tag + ChatColor.DARK_GRAY
-						+ " (Internal ID)" + ChatColor.GRAY + ".");
+				player.sendMessage(MMOItems.plugin.getPrefix() + "已成功删除 " + ChatColor.GOLD + tag + ChatColor.DARK_GRAY
+						+ " (内部 ID)" + ChatColor.GRAY + ".");
 			}
 		}
 	}
