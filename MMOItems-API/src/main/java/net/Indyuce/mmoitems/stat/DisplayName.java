@@ -22,7 +22,7 @@ public class DisplayName extends StringStat implements GemStoneStat {
 	private final String[] cleanFilter = {ChatColor.BOLD.toString(), ChatColor.ITALIC.toString(), ChatColor.UNDERLINE.toString(), ChatColor.STRIKETHROUGH.toString(), ChatColor.MAGIC.toString()};
 
 	public DisplayName() {
-		super("NAME", VersionMaterial.OAK_SIGN.toMaterial(), "Display Name", new String[] { "The item display name." },
+		super("NAME", VersionMaterial.OAK_SIGN.toMaterial(), "显示名称", new String[] { "物品的显示名称." },
 				new String[] { "all" });
 	}
 

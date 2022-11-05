@@ -6,6 +6,6 @@ import net.Indyuce.mmoitems.stat.type.StringStat;
 
 public class DisplayedType extends StringStat implements GemStoneStat {
     public DisplayedType() {
-        super("DISPLAYED_TYPE", VersionMaterial.OAK_SIGN.toMaterial(), "Displayed Type", new String[]{"This option will only affect the", "type displayed on the item lore."}, new String[]{"all"});
+        super("DISPLAYED_TYPE", VersionMaterial.OAK_SIGN.toMaterial(), "物品类型", new String[]{"物品的显示类型."}, new String[]{"all"});
     }
 }
