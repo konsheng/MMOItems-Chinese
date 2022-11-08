@@ -1,3 +1,5 @@
+# 项目迁移，暂停更新
+
 MMOItems Premium 的官方存储库
 
 ### 使用 MMOItems 作为依赖项
