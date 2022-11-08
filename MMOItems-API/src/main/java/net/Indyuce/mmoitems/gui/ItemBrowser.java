@@ -139,7 +139,7 @@ public class ItemBrowser extends PluginInventory {
         errorMeta.setDisplayName(ChatColor.RED + "- 错误 -");
         List<String> errorLore = new ArrayList<>();
         errorLore.add("\u00a7\u00a7oAn error occurred while");
-        errorLore.add("\u00a7\u00a7otrying to generate that item.");
+        errorLore.add("\u00a7\u00a7otrying to generate that item");
         errorMeta.setLore(errorLore);
         error.setItemMeta(errorMeta);
 
